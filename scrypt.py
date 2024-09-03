@@ -2,7 +2,7 @@ import psycopg2
 import json
 
 
-# Настройки подключения к PostgreSQL
+
 DB_HOST = 'localhost'
 DB_NAME = 'test'
 DB_USER = 'test'
@@ -10,7 +10,6 @@ DB_PASSWORD = 'test'
 
 
 
-# Подключение к базе данных PostgreSQL
 conn = psycopg2.connect(
     host=DB_HOST,
     database=DB_NAME,
@@ -19,11 +18,11 @@ conn = psycopg2.connect(
 )
 cur = conn.cursor()
 
-# Чтение данных из таблицы
+
 cur.execute("SELECT * FROM mytable")
 rows = cur.fetchall()
 
-# Создание списка словарей для хранения данных
+
 data = []
 for row in rows:
     data.append({
@@ -34,7 +33,7 @@ for row in rows:
         'description': row[4]
     })
 
-# Сохранение данных в файле *.json
+
 with open('data.json', 'w') as f:
     json.dump(data, f, indent=4)
 
